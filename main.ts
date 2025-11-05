@@ -107,12 +107,18 @@ async function check_severity_findings(
 
     const findings_data = await findings_response.json();
     const count = findings_data.pagination_info?.total_count || 0;
+    // print raw fidings data for debugging
+    console.log(
+        `Found ${count} ${severity} severity findings (results_since: ${effective_results_since})`,
+    );
+    console.log(`Findings data: ${JSON.stringify(findings_data)}`);
+
     total_findings += count;
+  }
 
     if (count > 0) {
       return { has_findings: true, total_count: total_findings };
     }
-  }
 
   return { has_findings: false, total_count: 0 };
 }
