@@ -300,8 +300,6 @@ function run() {
             let status_data = null;
             let scan_completed = false;
             let scan_failed = false;
-            // Skip waiting for scan completion if in ALL_ISSUES mode
-            const should_wait_for_scan = severity_check_scope.toUpperCase() !== "ALL_ISSUES";
             while (Date.now() - startTime < maxWaitTime) {
                 try {
                     const status_response = yield check_scan_status(dt_results_api_key, mobile_app_id, scan_id);
