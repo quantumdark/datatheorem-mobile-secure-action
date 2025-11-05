@@ -85,10 +85,13 @@ function check_severity_findings(dt_results_api_key, mobile_app_id, results_sinc
             }
             const findings_data = yield findings_response.json();
             const count = ((_a = findings_data.pagination_info) === null || _a === void 0 ? void 0 : _a.total_count) || 0;
+            // print raw fidings data for debugging
+            console.log(`Found ${count} ${severity} severity findings (results_since: ${effective_results_since})`);
+            console.log(`Findings data: ${JSON.stringify(findings_data)}`);
             total_findings += count;
-            if (count > 0) {
-                return { has_findings: true, total_count: total_findings };
-            }
+        }
+        if (total_findings > 0) {
+            return { has_findings: true, total_count: total_findings };
         }
         return { has_findings: false, total_count: 0 };
     });
