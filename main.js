@@ -84,10 +84,10 @@ function check_severity_findings(dt_results_api_key, mobile_app_id, results_sinc
                 throw new Error(`Error fetching security findings for ${severity} severity: HTTP ${findings_response.status}`);
             }
             const findings_data = yield findings_response.json();
-            const count = ((_a = findings_data.pagination_info) === null || _a === void 0 ? void 0 : _a.total_count) || 0;
-            // print raw fidings data for debugging
-            console.log(`Found ${count} ${severity} severity findings (results_since: ${effective_results_since})`);
-            console.log(`Findings data: ${JSON.stringify(findings_data)}`);
+            const count = ((_a = findings_data.pagination_information) === null || _a === void 0 ? void 0 : _a.total_count) || 0;
+            if (count === 0) {
+                console.log(`Found ${count} ${severity} severity findings (results_since: ${effective_results_since})`);
+            }
             total_findings += count;
         }
         if (total_findings > 0) {
