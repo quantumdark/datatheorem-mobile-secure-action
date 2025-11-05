@@ -106,7 +106,8 @@ async function check_severity_findings(
     }
 
     const findings_data = await findings_response.json();
-    const count = parseInt(findings_data.pagination_information?.total_count, 10) || 0;
+    const count =
+      parseInt(findings_data.pagination_information?.total_count, 10) || 0;
     if (count === 0) {
       console.log(
         `Found ${count} ${severity} severity findings (results_since: ${effective_results_since})`,
